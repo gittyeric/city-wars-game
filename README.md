@@ -1,4 +1,4 @@
-# Friendly Birds - a not so angry birds clone
+# Noah's Ark - a not so angry birds clone
 
 [Preview](http://georgiee.github.io/lab-friendly-birds/)
 
