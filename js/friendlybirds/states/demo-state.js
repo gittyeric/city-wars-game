@@ -141,7 +141,7 @@ define(['augment','pixi','game/game-session','entities/slingshot','entities/poly
     world.addChild(birdBoomerang);
     minimap.add(birdBoomerang)
     
-    for(var i = 0; i < 30;i++){
+    for(var i = 0; i < 5;i++){
         var birdBlue = PIXI.Sprite.fromFrame('kenny/penguin');
         birdBlue.anchor.set(0.5);
         birdBlue.scale.set(0.15);
@@ -159,12 +159,30 @@ define(['augment','pixi','game/game-session','entities/slingshot','entities/poly
     var pillar = PIXI.Sprite.fromFrame('kenny/grassBlock_dead');
     pillar.anchor.set(0.5, 1);
     pillar.scale.set(3.0);
-    pillar.position.set(1300,-pillar.height/2);
-    world.addChild(pillar);
-    minimap.add(pillar)
+    pillar.position.set(6600,-pillar.height/2);
+    //world.addChild(pillar);
+    //minimap.add(pillar)
     
     physics.enableBody(pillar);
     pillar.body.static = true;
+    
+    var brickCols = 3;
+    var brickRows = 9;
+    
+    for(var r = 0; r < brickRows; r++){
+        for(var c = 0; c < brickCols; c++){
+            var brick = PIXI.Sprite.fromFrame('kenny/grassBlock_dead');
+            brick.anchor.set(0.5, 1);
+            brick.scale.set(1.0);
+            brick.position.set(1800 + c*(brick.width), -r*(brick.height - 1) - 1);
+            world.addChild(brick);
+            minimap.add(brick);
+
+            physics.enableBody(brick);
+            brick.body.friction = 1000;
+            brick.body.static = false;
+        }
+    }
 
     var origin = PIXI.Sprite.fromFrame('assets/images/origin.png');
     origin.anchor.set(0.5);
@@ -176,12 +194,12 @@ define(['augment','pixi','game/game-session','entities/slingshot','entities/poly
     block.anchor.set(0.5, 0);
     block.position.set(1500,-block.height/2)
 
-    world.addChild(block);
-    minimap.add(block)
+    //world.addChild(block);
+    //minimap.add(block)
 
     var poly = new Polygon(resources.ground.texture, resources.polygons.data.test);
     poly.body.y = -230;
-    poly.body.x = 2000;
+    poly.body.x = 6000;
     world.addChild(poly);
     minimap.add(poly)
     
